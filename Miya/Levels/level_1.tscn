@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://pppwwcicjqbp"]
+
+[ext_resource type="Script" path="res://Levels/level_1.gd" id="1_1bl32"]
+[ext_resource type="PackedScene" uid="uid://cw4jy82jwc24j" path="res://Players/player1.tscn" id="1_ptbrw"]
+[ext_resource type="Texture2D" uid="uid://c1hx7j0g0vu2h" path="res://Assets/Art/hole in space.jpg" id="1_ru25m"]
+[ext_resource type="PackedScene" uid="uid://8hkg64sarxkt" path="res://Enemies/Asteroids.tscn" id="4_acpqy"]
+
+[node name="Level1" type="Node2D"]
+position = Vector2(-2, 0)
+script = ExtResource("1_1bl32")
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -100
+position = Vector2(579, 324.5)
+scale = Vector2(0.481667, 0.412063)
+texture = ExtResource("1_ru25m")
+flip_v = true
+
+[node name="Player1" parent="." instance=ExtResource("1_ptbrw")]
+texture_filter = 2
+position = Vector2(579, 319)
+rate_of_fire = 0.8
+
+[node name="Lasers" type="Node" parent="."]
+
+[node name="Asteroids" type="Node" parent="."]
+
+[node name="Asteroid" parent="Asteroids" instance=ExtResource("4_acpqy")]
+position = Vector2(-2, 0)
+
+[connection signal="laser_shot" from="Player1" to="." method="_on_player_1_laser_shot"]

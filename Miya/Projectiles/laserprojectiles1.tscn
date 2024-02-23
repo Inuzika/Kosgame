@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://bcl4x33gsbakg"]
+
+[ext_resource type="Texture2D" uid="uid://bplbytx1gyw71" path="res://Assets/Art/LaserProjectile1.png" id="1_0kxux"]
+[ext_resource type="Script" path="res://Projectiles/laserprojectiles1.gd" id="1_bb0df"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8f0dp"]
+radius = 1.65186
+height = 18.4297
+
+[node name="LaserProjectiles" type="Area2D"]
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("1_bb0df")
+
+[node name="LaserLeft" type="Sprite2D" parent="."]
+position = Vector2(-8.71745, -9.96926)
+scale = Vector2(0.22758, 0.31346)
+texture = ExtResource("1_0kxux")
+
+[node name="LaserRight" type="Sprite2D" parent="."]
+position = Vector2(15.2825, -9.96927)
+scale = Vector2(0.22758, 0.31346)
+texture = ExtResource("1_0kxux")
+
+[node name="LaserLeftHB" type="CollisionShape2D" parent="."]
+position = Vector2(-8.70892, -10.0217)
+shape = SubResource("CapsuleShape2D_8f0dp")
+
+[node name="LaserRightHB" type="CollisionShape2D" parent="."]
+position = Vector2(15.2913, -10.0221)
+shape = SubResource("CapsuleShape2D_8f0dp")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(3.5, -18)
+scale = Vector2(1.35, 0.220873)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
